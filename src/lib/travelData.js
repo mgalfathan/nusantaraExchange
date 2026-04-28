@@ -7,6 +7,40 @@ export const preferenceOptions = [
   { id: "adventure", label: "Petualangan", icon: "Compass" }
 ];
 
+export const routeOriginCatalog = [
+  { label: "Jakarta", lat: -6.2088, lng: 106.8456 },
+  { label: "Bogor", lat: -6.595, lng: 106.8167 },
+  { label: "Bandung", lat: -6.9175, lng: 107.6191 },
+  { label: "Semarang", lat: -6.9667, lng: 110.4167 },
+  { label: "Yogyakarta", lat: -7.7956, lng: 110.3695 },
+  { label: "Surabaya", lat: -7.2575, lng: 112.7521 },
+  { label: "Malang", lat: -7.9666, lng: 112.6326 },
+  { label: "Denpasar", lat: -8.6705, lng: 115.2126 },
+  { label: "Mataram", lat: -8.5833, lng: 116.1167 },
+  { label: "Kupang", lat: -10.1772, lng: 123.607 },
+  { label: "Medan", lat: 3.5952, lng: 98.6722 },
+  { label: "Padang", lat: -0.9471, lng: 100.4172 },
+  { label: "Palembang", lat: -2.9761, lng: 104.7754 },
+  { label: "Pontianak", lat: -0.0263, lng: 109.3425 },
+  { label: "Balikpapan", lat: -1.2379, lng: 116.8529 },
+  { label: "Samarinda", lat: -0.5022, lng: 117.1536 },
+  { label: "Banjarmasin", lat: -3.3186, lng: 114.5944 },
+  { label: "Makassar", lat: -5.1477, lng: 119.4327 },
+  { label: "Manado", lat: 1.4748, lng: 124.8421 },
+  { label: "Kendari", lat: -3.9985, lng: 122.512 },
+  { label: "Ambon", lat: -3.6547, lng: 128.1903 },
+  { label: "Jayapura", lat: -2.5337, lng: 140.7181 },
+  { label: "Kuala Lumpur", lat: 3.139, lng: 101.6869 },
+  { label: "Singapore", lat: 1.3521, lng: 103.8198 },
+  { label: "Bangkok", lat: 13.7563, lng: 100.5018 },
+  { label: "Manila", lat: 14.5995, lng: 120.9842 },
+  { label: "Ho Chi Minh City", lat: 10.8231, lng: 106.6297 },
+  { label: "Hanoi", lat: 21.0278, lng: 105.8342 },
+  { label: "Phnom Penh", lat: 11.5564, lng: 104.9282 },
+  { label: "Vientiane", lat: 17.9757, lng: 102.6331 },
+  { label: "Tulis manual", lat: null, lng: null }
+];
+
 export const destinations = [
   {
     id: "wae-rebo",
@@ -50,7 +84,7 @@ export const destinations = [
     },
     highlights: ["Mbaru Niang", "Homestay adat", "Kopi Flores", "Pemandangan kabut pagi"],
     nearbyPoints: ["Denge", "Todo Village", "Labuan Bajo"],
-    malaysiaMatch: "kampung-morten"
+    aseanMatch: "kampung-morten"
   },
   {
     id: "tumpak-sewu",
@@ -94,7 +128,7 @@ export const destinations = [
     },
     highlights: ["Panorama atas", "Goa Tetes", "Tebing Semeru", "Fotografi lanskap"],
     nearbyPoints: ["Goa Tetes", "Kapas Biru", "Ranu Pani"],
-    malaysiaMatch: "belum-rainforest"
+    aseanMatch: "ban-gioc"
   },
   {
     id: "sombori",
@@ -138,7 +172,7 @@ export const destinations = [
     },
     highlights: ["Laguna biru", "Gua Berlian", "Pulau Kayangan", "Snorkeling"],
     nearbyPoints: ["Labengki", "Teluk Tolo", "Pulau Kayangan"],
-    malaysiaMatch: "pulau-kapas"
+    aseanMatch: "el-nido"
   },
   {
     id: "sawahlunto",
@@ -182,7 +216,7 @@ export const destinations = [
     },
     highlights: ["Museum Goedang Ransoem", "Lubang Mbah Soero", "Stasiun lama", "Kota tua"],
     nearbyPoints: ["Danau Singkarak", "Solok", "Sijunjung"],
-    malaysiaMatch: "lenggong-valley"
+    aseanMatch: "luang-prabang"
   },
   {
     id: "kete-kesu",
@@ -226,7 +260,7 @@ export const destinations = [
     },
     highlights: ["Tongkonan", "Makam tebing", "Ukiran Toraja", "Kopi dataran tinggi"],
     nearbyPoints: ["Rantepao", "Londa", "Batutumonga"],
-    malaysiaMatch: "sarawak-cultural-village"
+    aseanMatch: "ban-chiang"
   },
   {
     id: "pulau-lengkuas",
@@ -270,11 +304,11 @@ export const destinations = [
     },
     highlights: ["Mercusuar", "Batu granit", "Snorkeling", "Dulang Belitung"],
     nearbyPoints: ["Tanjung Kelayang", "Batu Berlayar", "Tanjung Tinggi"],
-    malaysiaMatch: "pulau-kapas"
+    aseanMatch: "el-nido"
   }
 ];
 
-export const malaysiaDestinations = [
+export const aseanDestinations = [
   {
     id: "kampung-morten",
     name: "Kampung Morten",
@@ -328,60 +362,114 @@ export const malaysiaDestinations = [
       "Keduanya memperlihatkan arsitektur tradisional sebagai pintu masuk memahami identitas komunitas."
   },
   {
-    id: "pulau-kapas",
-    name: "Pulau Kapas",
-    country: "Malaysia",
-    region: "Terengganu",
+    id: "el-nido",
+    name: "El Nido",
+    country: "Filipina",
+    region: "Palawan",
     categories: ["beach", "nature"],
     image:
       "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=82",
     description:
-      "Pulau kecil dengan pantai putih, snorkeling santai, dan akses perahu cepat dari Marang.",
+      "Gugusan pulau kapur, lagoon, dan perjalanan laut pendek yang populer untuk island hopping tropis Asia Tenggara.",
     similarity:
-      "Sama-sama cocok untuk island hopping ringan, snorkeling, dan perjalanan pesisir yang tidak terlalu padat."
+      "Sama-sama cocok untuk island hopping, snorkeling, dan pengalaman pesisir yang kuat secara visual."
+  },
+  {
+    id: "ban-gioc",
+    name: "Ban Gioc Waterfall",
+    country: "Vietnam",
+    region: "Cao Bang",
+    categories: ["nature", "adventure"],
+    image:
+      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=82",
+    description:
+      "Air terjun besar di perbatasan utara Vietnam dengan karakter lanskap tebing dan aliran air yang dramatis.",
+    similarity:
+      "Sama-sama menawarkan pengalaman lanskap air yang kuat dan membutuhkan perencanaan akses yang matang."
+  },
+  {
+    id: "luang-prabang",
+    name: "Luang Prabang",
+    country: "Laos",
+    region: "Laos Utara",
+    categories: ["history", "culture", "culinary"],
+    image:
+      "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1200&q=82",
+    description:
+      "Kota warisan dengan jejak kolonial, tradisi Buddha, pasar malam, dan ritme kota tua yang tenang.",
+    similarity:
+      "Sama-sama kuat pada pembacaan sejarah kota dan transformasi kawasan lama menjadi pengalaman publik."
+  },
+  {
+    id: "ban-chiang",
+    name: "Ban Chiang",
+    country: "Thailand",
+    region: "Udon Thani",
+    categories: ["culture", "history"],
+    image:
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=82",
+    description:
+      "Situs budaya dan arkeologi yang dikenal sebagai pintu masuk membaca sejarah komunitas awal di daratan Asia Tenggara.",
+    similarity:
+      "Sama-sama menghubungkan artefak, ruang hidup tradisional, dan narasi identitas komunitas."
   }
 ];
 
 export const culturePairs = [
   {
     id: "village-heritage",
-    title: "Desa Adat dan Kampung Heritage",
+    title: "Desa Adat dan Kampung Heritage ASEAN",
     indonesia: "Wae Rebo, Flores",
-    malaysia: "Kampung Morten, Melaka",
+    asean: "Kampung Morten, Melaka",
+    country: "Malaysia",
     sharedTheme: "Rumah tradisional sebagai pusat memori keluarga dan tata ruang komunitas.",
     difference:
       "Wae Rebo menonjolkan kehidupan pegunungan dan arsitektur Mbaru Niang, sedangkan Kampung Morten kuat pada kampung Melayu sungai di kawasan urban heritage.",
     recommendedFlow: "Mulai dari homestay Wae Rebo, lalu lanjutkan city heritage walk di Melaka."
   },
   {
-    id: "ritual-borneo",
-    title: "Arsitektur Adat Borneo dan Sulawesi",
-    indonesia: "Kete Kesu, Toraja",
-    malaysia: "Sarawak Cultural Village",
-    sharedTheme: "Rumah adat, ukiran, musik, dan ritual sebagai bahasa identitas.",
+    id: "waterfall-asean",
+    title: "Lanskap Air Dramatis ASEAN",
+    indonesia: "Tumpak Sewu, Jawa Timur",
+    asean: "Ban Gioc Waterfall, Cao Bang",
+    country: "Vietnam",
+    sharedTheme: "Air terjun besar sebagai pengalaman lanskap aktif dan fotografi alam.",
     difference:
-      "Toraja lebih kuat pada ritus leluhur dan lanskap pemakaman, Sarawak lebih cocok sebagai pengantar lintas-etnis Borneo Malaysia.",
-    recommendedFlow: "Gunakan Toraja untuk pengalaman lapangan, Sarawak untuk perbandingan bentuk rumah dan seni pertunjukan."
+      "Tumpak Sewu lebih vertikal dan intens dengan jalur turun tebing, sedangkan Ban Gioc lebih lebar dan terbuka di lanskap perbatasan.",
+    recommendedFlow: "Gabungkan untuk itinerary pecinta air terjun dan lanskap geologi Asia Tenggara."
   },
   {
-    id: "heritage-landscape",
-    title: "Warisan Sejarah dan Lanskap Lama",
+    id: "heritage-asean",
+    title: "Kota Warisan dan Ritme Sejarah",
     indonesia: "Sawahlunto, Sumatera Barat",
-    malaysia: "Lenggong Valley, Perak",
-    sharedTheme: "Situs lama yang menjelaskan hubungan manusia, kerja, dan lanskap.",
+    asean: "Luang Prabang, Laos Utara",
+    country: "Laos",
+    sharedTheme: "Kawasan lama yang menjelaskan hubungan sejarah kota, kehidupan warga, dan lanskap.",
     difference:
-      "Sawahlunto berpusat pada sejarah industri tambang, Lenggong pada arkeologi dan sejarah manusia purba.",
-    recommendedFlow: "Cocok untuk itinerary edukasi sejarah kawasan Melayu-Nusantara."
+      "Sawahlunto berpusat pada sejarah industri tambang, sedangkan Luang Prabang lebih menonjolkan kota sungai, biara, dan ritme heritage hidup.",
+    recommendedFlow: "Cocok untuk itinerary slow travel yang berfokus pada warisan kota Asia Tenggara."
   },
   {
-    id: "island-escape",
-    title: "Pulau Kecil dan Budaya Pesisir",
-    indonesia: "Pulau Lengkuas atau Sombori",
-    malaysia: "Pulau Kapas, Terengganu",
-    sharedTheme: "Perjalanan laut pendek, snorkeling, dan kehidupan komunitas pesisir.",
+    id: "ritual-identity",
+    title: "Identitas Komunitas dan Jejak Budaya",
+    indonesia: "Kete Kesu, Toraja",
+    asean: "Ban Chiang, Udon Thani",
+    country: "Thailand",
+    sharedTheme: "Ruang budaya yang membantu membaca identitas komunitas dan memori panjang kawasan.",
     difference:
-      "Belitung kuat pada batu granit dan mercusuar; Sombori kuat pada karst; Pulau Kapas lebih santai dan mudah diakses dari Semenanjung Malaysia.",
-    recommendedFlow: "Gabungkan sebagai paket island literacy: navigasi, pangan laut, dan konservasi terumbu."
+      "Toraja menekankan rumah adat, ritual, dan lanskap leluhur, sementara Ban Chiang lebih arkeologis dan berfokus pada jejak kebudayaan awal.",
+    recommendedFlow: "Cocok untuk perbandingan antara budaya hidup dan situs sejarah komunitas Asia Tenggara."
+  },
+  {
+    id: "island-asean",
+    title: "Island Hopping dan Pesisir ASEAN",
+    indonesia: "Pulau Lengkuas atau Sombori",
+    asean: "El Nido, Palawan",
+    country: "Filipina",
+    sharedTheme: "Pulau kecil, laut jernih, dan pengalaman pesisir yang kuat untuk island hopping.",
+    difference:
+      "Belitung kuat pada mercusuar dan granit; Sombori pada karst; El Nido pada lagoon dan gugusan pulau kapur yang lebih ekspansif.",
+    recommendedFlow: "Gabungkan sebagai paket eksplorasi pesisir tropis Asia Tenggara."
   }
 ];
 
@@ -403,6 +491,42 @@ export const countryFallback = [
     subregion: "South-Eastern Asia",
     languages: { msa: "Malay" },
     currencies: { MYR: { name: "Malaysian ringgit", symbol: "RM" } }
+  },
+  {
+    cca2: "TH",
+    name: { common: "Thailand" },
+    capital: ["Bangkok"],
+    region: "Asia",
+    subregion: "South-Eastern Asia",
+    languages: { tha: "Thai" },
+    currencies: { THB: { name: "Thai baht", symbol: "฿" } }
+  },
+  {
+    cca2: "VN",
+    name: { common: "Vietnam" },
+    capital: ["Hanoi"],
+    region: "Asia",
+    subregion: "South-Eastern Asia",
+    languages: { vie: "Vietnamese" },
+    currencies: { VND: { name: "Vietnamese dong", symbol: "₫" } }
+  },
+  {
+    cca2: "LA",
+    name: { common: "Laos" },
+    capital: ["Vientiane"],
+    region: "Asia",
+    subregion: "South-Eastern Asia",
+    languages: { lao: "Lao" },
+    currencies: { LAK: { name: "Lao kip", symbol: "₭" } }
+  },
+  {
+    cca2: "PH",
+    name: { common: "Philippines" },
+    capital: ["Manila"],
+    region: "Asia",
+    subregion: "South-Eastern Asia",
+    languages: { eng: "English", fil: "Filipino" },
+    currencies: { PHP: { name: "Philippine peso", symbol: "₱" } }
   }
 ];
 
@@ -410,8 +534,8 @@ export function getDestinationById(id) {
   return destinations.find((destination) => destination.id === id);
 }
 
-export function getMalaysiaDestinationById(id) {
-  return malaysiaDestinations.find((destination) => destination.id === id);
+export function getAseanDestinationById(id) {
+  return aseanDestinations.find((destination) => destination.id === id);
 }
 
 export function filterDestinations({ search = "", category = "all", country = "Indonesia" } = {}) {
@@ -484,31 +608,48 @@ export function buildRoute(destinationId, origin = "Jakarta") {
   const destination = getDestinationById(destinationId) || destinations[0];
   const originLabel = origin.trim() || "Jakarta";
   const encodedOrigin = encodeURIComponent(originLabel);
+  const encodedDestination = encodeURIComponent(`${destination.location.lat},${destination.location.lng}`);
+  const originPoint = routeOriginCatalog.find((item) => item.label.toLowerCase() === originLabel.toLowerCase());
+  const dynamicDistanceKm =
+    originPoint?.lat != null ? haversineDistance(originPoint, destination.location) : null;
 
   return {
     origin: originLabel,
     destination: destination.name,
     gateway: destination.transport.gateway,
-    distance: destination.transport.distance,
-    estimate: destination.transport.estimate,
+    distance: dynamicDistanceKm != null ? `~${formatDistanceKm(dynamicDistanceKm)} km dari ${originLabel}` : destination.transport.distance,
+    estimate: dynamicDistanceKm != null ? estimateTravelTime(dynamicDistanceKm) : destination.transport.estimate,
+    lastMileAccess: destination.transport.distance,
     modes: destination.transport.modes,
     accessNotes: destination.transport.accessNotes,
     location: destination.location,
-    navigationUrl: `/api/navigation?destinationId=${encodeURIComponent(destination.id)}&origin=${encodedOrigin}`
+    originMatched: Boolean(originPoint?.lat != null),
+    navigationUrl: `https://www.google.com/maps/dir/?api=1&origin=${encodedOrigin}&destination=${encodedDestination}&travelmode=driving`,
+    embedUrl: buildAreaEmbedUrl(destination.location)
   };
+}
+
+export function buildAreaEmbedUrl(location) {
+  const delta = 0.08;
+  const left = (location.lng - delta).toFixed(5);
+  const bottom = (location.lat - delta).toFixed(5);
+  const right = (location.lng + delta).toFixed(5);
+  const top = (location.lat + delta).toFixed(5);
+
+  return `https://www.openstreetmap.org/export/embed.html?bbox=${left}%2C${bottom}%2C${right}%2C${top}&layer=mapnik&marker=${location.lat}%2C${location.lng}`;
 }
 
 export function getCultureExchangePayload() {
   return culturePairs.map((pair) => {
     const indonesiaDestination = destinations.find((destination) => pair.indonesia.includes(destination.name));
-    const malaysiaDestination =
-      malaysiaDestinations.find((destination) => indonesiaDestination?.malaysiaMatch === destination.id) ||
-      malaysiaDestinations.find((destination) => pair.malaysia.includes(destination.name));
+    const aseanDestination =
+      aseanDestinations.find((destination) => indonesiaDestination?.aseanMatch === destination.id) ||
+      aseanDestinations.find((destination) => pair.asean.includes(destination.name));
 
     return {
       ...pair,
       indonesiaDestination,
-      malaysiaDestination
+      aseanDestination
     };
   });
 }
@@ -534,4 +675,43 @@ function budgetLabel(value) {
     mid: "menengah",
     high: "premium"
   }[value] || value;
+}
+
+function haversineDistance(from, to) {
+  const earthRadiusKm = 6371;
+  const lat1 = degreesToRadians(from.lat);
+  const lat2 = degreesToRadians(to.lat);
+  const latDelta = degreesToRadians(to.lat - from.lat);
+  const lngDelta = degreesToRadians(to.lng - from.lng);
+  const a =
+    Math.sin(latDelta / 2) ** 2 +
+    Math.cos(lat1) * Math.cos(lat2) * Math.sin(lngDelta / 2) ** 2;
+
+  return earthRadiusKm * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function degreesToRadians(value) {
+  return (value * Math.PI) / 180;
+}
+
+function formatDistanceKm(value) {
+  return Math.round(value).toLocaleString("id-ID");
+}
+
+function estimateTravelTime(distanceKm) {
+  if (distanceKm < 180) {
+    const low = Math.max(2, Math.round(distanceKm / 60));
+    const high = Math.max(low + 1, Math.round(distanceKm / 40));
+    return `~${low}-${high} jam perjalanan darat`;
+  }
+
+  if (distanceKm < 800) {
+    const low = Math.max(3, Math.round(distanceKm / 220));
+    const high = Math.max(low + 2, Math.round(distanceKm / 140));
+    return `~${low}-${high} jam perjalanan multimoda`;
+  }
+
+  const low = Math.max(5, Math.round(distanceKm / 650) + 1);
+  const high = Math.max(low + 2, Math.round(distanceKm / 420) + 2);
+  return `~${low}-${high} jam termasuk transit`;
 }

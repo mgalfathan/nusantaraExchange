@@ -30,10 +30,12 @@ import {
   fetchRoute
 } from "./lib/api";
 import {
+  buildAreaEmbedUrl,
   destinations as fallbackDestinations,
+  getAseanDestinationById,
   getDestinationById,
-  getMalaysiaDestinationById,
-  preferenceOptions
+  preferenceOptions,
+  routeOriginCatalog
 } from "./lib/travelData";
 
 const iconMap = {
@@ -65,6 +67,7 @@ function App() {
   const [pace, setPace] = useState("any");
   const [budget, setBudget] = useState("any");
   const [recommendations, setRecommendations] = useState([]);
+  const [routeOriginChoice, setRouteOriginChoice] = useState("Jakarta");
   const [routeOrigin, setRouteOrigin] = useState("Jakarta");
   const [routeInfo, setRouteInfo] = useState(null);
   const [culturePairs, setCulturePairs] = useState([]);
@@ -115,17 +118,25 @@ function App() {
     );
   }
 
+  function handleRouteOriginChange(value) {
+    setRouteOriginChoice(value);
+
+    if (value !== "Tulis manual") {
+      setRouteOrigin(value);
+    }
+  }
+
   return (
     <div className="min-h-screen bg-rice text-ink">
       <header className="sticky top-0 z-40 border-b border-ink/10 bg-rice/92 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-          <a href="#top" className="flex items-center gap-3" aria-label="Nusantara Exchange home">
+          <a href="#top" className="flex items-center gap-3" aria-label="HiddenNusantaraX home">
             <span className="grid h-10 w-10 place-items-center rounded-lg bg-ink text-rice">
               <Globe2 className="h-5 w-5" />
             </span>
             <span>
-              <span className="block text-sm font-semibold uppercase tracking-[0.18em] text-canopy">Nusantara</span>
-              <span className="block text-lg font-bold leading-5">Exchange</span>
+              <span className="block text-sm font-semibold uppercase tracking-[0.18em] text-canopy">Hidden</span>
+              <span className="block text-lg font-bold leading-5">NusantaraX</span>
             </span>
           </a>
 
@@ -156,20 +167,20 @@ function App() {
             <div className="flex max-w-3xl flex-col justify-center text-rice">
               <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-lg border border-rice/35 bg-ink/30 px-3 py-2 text-sm font-semibold backdrop-blur">
                 <Sparkles className="h-4 w-4 text-turmeric" />
-                Hidden gems Indonesia + pertukaran budaya Malaysia
+                Hidden gems Indonesia + pertukaran budaya ASEAN
               </div>
               <h1 className="max-w-3xl text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
-                Nusantara Exchange
+                HiddenNusantaraX
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-7 text-rice/86 sm:text-lg">
                 Temukan destinasi tersembunyi, baca konteks budaya lokal, cek akses transportasi, dan bandingkan
-                pengalaman Indonesia-Malaysia dalam satu platform.
+                pengalaman Indonesia-ASEAN dalam satu platform.
               </p>
 
               <div className="mt-8 grid gap-3 sm:grid-cols-3">
                 {[
                   ["6", "Hidden gems"],
-                  ["4", "Tema lintas budaya"],
+                  ["5", "Tema lintas budaya"],
                   ["Rute", "Siap Jalan"]
                 ].map(([value, label]) => (
                   <div key={label} className="rounded-lg border border-rice/25 bg-rice/10 p-4 backdrop-blur">
@@ -407,26 +418,46 @@ function App() {
         <section id="route" className="bg-ink py-12 text-rice">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <SectionHeading
-            eyebrow="Travel Route & Access"
-            title="Rute, transportasi, dan peta"
-            description="Gunakan origin fleksibel untuk membuat panduan perjalanan, estimasi akses, dan tampilan lokasi."
+              eyebrow="Travel Route & Access"
+              title="Rute, transportasi, dan peta"
+              description="Gunakan origin fleksibel untuk melihat area tujuan, estimasi akses, dan panduan perjalanan."
               inverted
             />
 
-            <div className="mt-8 grid gap-6 lg:grid-cols-[0.78fr_1.22fr]">
+            <div className="mt-8 grid gap-6 lg:items-start lg:grid-cols-[0.78fr_1.22fr]">
               <div className="rounded-lg bg-rice p-5 text-ink">
                 <label className="block">
                   <span className="text-sm font-semibold text-ink/72">Berangkat dari</span>
                   <div className="mt-2 flex items-center gap-2 rounded-lg border border-ink/12 bg-white px-3 py-2">
                     <Plane className="h-4 w-4 text-ink/45" />
-                    <input
-                      value={routeOrigin}
-                      onChange={(event) => setRouteOrigin(event.target.value)}
-                      className="w-full bg-transparent text-sm outline-none"
-                      placeholder="Jakarta"
-                    />
+                    <select
+                      value={routeOriginChoice}
+                      onChange={(event) => handleRouteOriginChange(event.target.value)}
+                      className="w-full bg-transparent text-sm font-semibold outline-none"
+                    >
+                      {routeOriginCatalog.map((origin) => (
+                        <option key={origin.label} value={origin.label}>
+                          {origin.label}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </label>
+
+                {routeOriginChoice === "Tulis manual" && (
+                  <label className="mt-3 block">
+                    <span className="text-sm font-semibold text-ink/72">Kota asal manual</span>
+                    <div className="mt-2 flex items-center gap-2 rounded-lg border border-ink/12 bg-white px-3 py-2">
+                      <Plane className="h-4 w-4 text-ink/45" />
+                      <input
+                        value={routeOrigin}
+                        onChange={(event) => setRouteOrigin(event.target.value)}
+                        className="w-full bg-transparent text-sm outline-none"
+                        placeholder="Contoh: Semarang"
+                      />
+                    </div>
+                  </label>
+                )}
 
                 {routeInfo && (
                   <div className="mt-5 grid gap-4">
@@ -435,9 +466,20 @@ function App() {
                       <h3 className="mt-1 text-2xl font-black">{routeInfo.destination}</h3>
                     </div>
                     <div className="grid gap-3">
-                      <AccessRow icon={MapPin} label="Gerbang" value={routeInfo.gateway} />
+                      <AccessRow icon={Plane} label="Asal" value={routeInfo.origin} />
                       <AccessRow icon={Route} label="Jarak" value={routeInfo.distance} />
                       <AccessRow icon={Bus} label="Estimasi" value={routeInfo.estimate} />
+                    </div>
+                    <div className="rounded-lg bg-mist p-4">
+                      <p className="text-sm font-bold">Akses akhir ke lokasi</p>
+                      <p className="mt-2 text-sm leading-6 text-ink/68">
+                        {routeInfo.gateway}: {routeInfo.lastMileAccess}
+                      </p>
+                      {!routeInfo.originMatched && (
+                        <p className="mt-2 text-xs font-semibold text-ink/52">
+                          Untuk kota manual yang belum ada di daftar, jarak detail mengikuti panduan akses lokal.
+                        </p>
+                      )}
                     </div>
                     <div className="rounded-lg bg-mist p-4">
                       <p className="text-sm font-bold">Moda transportasi</p>
@@ -463,8 +505,13 @@ function App() {
                 )}
               </div>
 
-              <div className="overflow-hidden rounded-lg bg-rice shadow-soft">
-                <MapPreview destination={selected} routeInfo={routeInfo} />
+              <div className="self-start overflow-hidden rounded-lg bg-rice shadow-soft">
+                <iframe
+                  title={`Area ${selected?.name}`}
+                  src={routeInfo?.embedUrl || buildAreaEmbedUrl(selected.location)}
+                  className="map-frame"
+                  loading="lazy"
+                />
                 <div className="grid gap-3 p-5 md:grid-cols-3">
                   {nearbyPlaces.slice(0, 6).map((place) => (
                     <div key={place.id || place.name} className="rounded-lg bg-white p-3 text-ink">
@@ -482,8 +529,8 @@ function App() {
         <section id="exchange" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Cross-Culture Exchange"
-            title="Indonesia-Malaysia dalam satu lensa"
-            description="Bandingkan tema budaya, lihat destinasi padanan, dan pahami konteks negara secara ringkas."
+            title="Indonesia dan ASEAN dalam satu lensa"
+            description="Bandingkan tema budaya, lihat destinasi padanan lintas negara ASEAN, dan pahami konteks kawasan secara ringkas."
           />
 
           <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -498,7 +545,7 @@ function App() {
                 </div>
                 <div className="mt-5 grid gap-3 sm:grid-cols-2">
                   <CountryCard label="Indonesia" value={pair.indonesia} image={pair.indonesiaDestination?.image} />
-                  <CountryCard label="Malaysia" value={pair.malaysia} image={pair.malaysiaDestination?.image} />
+                  <CountryCard label={pair.country} value={pair.asean} image={pair.aseanDestination?.image} />
                 </div>
                 <p className="mt-4 text-sm leading-6 text-ink/70">{pair.difference}</p>
                 <p className="mt-3 rounded-lg bg-rice p-3 text-sm font-semibold leading-6 text-ink/72">
@@ -526,7 +573,7 @@ function App() {
       </main>
 
       <footer className="border-t border-ink/10 bg-rice px-4 py-8 text-center text-sm font-semibold text-ink/60">
-        Nusantara Exchange - Tourism & Culture Exchange prototype. Data wisata dikurasi untuk eksplorasi dan perbandingan budaya.
+        HiddenNusantaraX - Tourism & Culture Exchange prototype. Data wisata dikurasi untuk eksplorasi dan perbandingan budaya.
       </footer>
     </div>
   );
@@ -611,19 +658,20 @@ function MiniList({ title, items }) {
 }
 
 function CultureMatch({ destination }) {
-  const malaysia = getMalaysiaDestinationById(destination.malaysiaMatch);
+  const asean = getAseanDestinationById(destination.aseanMatch);
 
-  if (!malaysia) {
+  if (!asean) {
     return <p className="text-sm text-ink/70">Belum ada padanan lintas negara.</p>;
   }
 
   return (
     <div className="grid gap-3 sm:grid-cols-[0.36fr_0.64fr]">
-      <img src={malaysia.image} alt={malaysia.name} className="h-36 w-full rounded-lg object-cover" />
+      <img src={asean.image} alt={asean.name} className="h-36 w-full rounded-lg object-cover" />
       <div>
-        <p className="text-sm font-bold uppercase tracking-[0.14em] text-spice">Malaysia Match</p>
-        <h4 className="mt-1 text-lg font-black">{malaysia.name}</h4>
-        <p className="mt-2 text-sm leading-6 text-ink/68">{malaysia.similarity}</p>
+        <p className="text-sm font-bold uppercase tracking-[0.14em] text-spice">ASEAN Match</p>
+        <h4 className="mt-1 text-lg font-black">{asean.name}</h4>
+        <p className="mt-1 text-sm font-semibold text-canopy">{asean.country}</p>
+        <p className="mt-2 text-sm leading-6 text-ink/68">{asean.similarity}</p>
       </div>
     </div>
   );
@@ -667,43 +715,6 @@ function CountryCard({ label, value, image }) {
       <div className="p-3">
         <p className="text-xs font-black uppercase tracking-[0.14em] text-canopy">{label}</p>
         <p className="mt-1 text-sm font-bold leading-5">{value}</p>
-      </div>
-    </div>
-  );
-}
-
-function MapPreview({ destination, routeInfo }) {
-  const location = routeInfo?.location || destination.location;
-
-  return (
-    <div className="relative min-h-[320px] overflow-hidden bg-mist p-5 sm:min-h-[360px]">
-      <div className="absolute inset-0 opacity-60">
-        <div className="h-full w-full bg-[linear-gradient(90deg,rgba(31,36,33,0.08)_1px,transparent_1px),linear-gradient(0deg,rgba(31,36,33,0.08)_1px,transparent_1px)] bg-[size:36px_36px]" />
-      </div>
-      <div className="absolute -left-10 top-12 h-44 w-[120%] rotate-[-10deg] rounded-full border-[18px] border-canopy/18" />
-      <div className="absolute bottom-12 right-[-20%] h-40 w-[86%] rotate-[16deg] rounded-full border-[16px] border-lagoon/18" />
-      <div className="relative flex h-full min-h-[280px] flex-col justify-between">
-        <div className="flex items-start justify-between gap-4">
-          <div className="rounded-lg bg-white/90 p-4 shadow-soft">
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-canopy">Titik Lokasi</p>
-            <h3 className="mt-1 text-2xl font-black text-ink">{destination.name}</h3>
-            <p className="mt-2 text-sm font-semibold text-ink/60">{destination.location.label}</p>
-          </div>
-          <div className="rounded-lg bg-ink px-3 py-2 text-right text-xs font-bold text-rice shadow-soft">
-            <p>{Number(location.lat).toFixed(4)}</p>
-            <p>{Number(location.lng).toFixed(4)}</p>
-          </div>
-        </div>
-        <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-spice text-white shadow-soft ring-[18px] ring-spice/20">
-          <MapPin className="h-9 w-9" />
-        </div>
-        <div className="grid gap-3 sm:grid-cols-3">
-          {(routeInfo?.modes || destination.transport.modes).slice(0, 3).map((mode) => (
-            <div key={mode} className="rounded-lg bg-white/90 p-3 text-sm font-bold text-ink shadow-soft">
-              {mode}
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );

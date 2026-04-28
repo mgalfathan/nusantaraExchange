@@ -1,6 +1,6 @@
-# Nusantara Exchange
+# HiddenNusantaraX
 
-Full-stack web platform bertema **Tourism & Culture Exchange** untuk eksplorasi hidden gems Indonesia dan pertukaran budaya Indonesia-Malaysia.
+Full-stack web platform bertema **Tourism & Culture Exchange** untuk eksplorasi hidden gems Indonesia dan pertukaran budaya Indonesia-ASEAN.
 
 ## Fitur
 
@@ -8,7 +8,7 @@ Full-stack web platform bertema **Tourism & Culture Exchange** untuk eksplorasi 
 - Cultural Insight: sejarah, tradisi, kuliner, dan etika lokal.
 - Smart Recommendation: rekomendasi berdasarkan minat, ritme perjalanan, dan budget.
 - Travel Route & Access: informasi transportasi, estimasi waktu, panel lokasi, dan tombol rute lengkap.
-- Cross-Culture Exchange: perbandingan tema budaya Indonesia-Malaysia dan destinasi padanan.
+- Cross-Culture Exchange: perbandingan tema budaya Indonesia dan negara-negara ASEAN beserta destinasi padanan.
 - Data-ready: endpoint internal dengan data terkurasi dan opsi koneksi layanan eksternal.
 
 ## Tech Stack

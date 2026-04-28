@@ -1,0 +1,6 @@
+name = "tourism-culture-exchange"
+compatibility_date = "2025-05-07"
+pages_build_output_dir = "dist"
+
+[vars]
+APP_NAME = "Nusantara Exchange"

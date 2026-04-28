@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #1f2421;
+  background: #f5f1e8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.hero-veil {
+  background:
+    linear-gradient(90deg, rgba(31, 36, 33, 0.82) 0%, rgba(31, 36, 33, 0.58) 45%, rgba(31, 36, 33, 0.28) 100%),
+    linear-gradient(0deg, rgba(31, 36, 33, 0.55) 0%, rgba(31, 36, 33, 0) 42%);
+}
+
+.glass-panel {
+  background: rgba(245, 241, 232, 0.9);
+  border: 1px solid rgba(245, 241, 232, 0.76);
+  backdrop-filter: blur(18px);
+}
+
+.map-frame {
+  border: 0;
+  width: 100%;
+  min-height: 320px;
+}
+
+@media (max-width: 640px) {
+  .map-frame {
+    min-height: 260px;
+  }
+}
